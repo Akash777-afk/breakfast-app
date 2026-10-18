@@ -1,0 +1,116 @@
+:root {
+  /* Brand */
+  --color-brand: #039719;
+  --color-brand-text: #027d18; /* brand green for small TEXT on light surfaces (AA); --color-brand stays for icons/graphics */
+  --color-green-900: #0d5a2b;
+  --color-green-700: #137a3b;
+  --color-lime: #c6e84d;
+  --color-ink: #0b0b0b;
+  --color-ink-deep: #06210f;
+  --color-white: #ffffff;
+
+  /* Surfaces */
+  --color-bg-page: #eef1ef;
+  --color-surface: #ffffff;
+  --color-chip-bg: #f6f6f6;
+  --color-card-placeholder: #eceeed;
+
+  /* Text */
+  --color-text-primary: #1b1f1d;
+  --color-text-secondary: #5f6964; /* AA (>=5:1) on white, card grey and the light-green surfaces */
+  --color-text-nav-inactive: #6f6f6f;
+  --color-text-on-green: #ffffff;
+  --color-text-on-green-muted: rgba(255, 255, 255, 0.95);
+
+  /* Accents */
+  --color-accent-active: #f08a24;
+
+  /* Focus — brand green on light surfaces, lime inside the green header (overridden there) */
+  --color-focus: var(--color-brand);
+
+  /* Avatar */
+  --color-avatar-ring: #e8b04a;
+  --color-avatar-bg: #fff4d6;
+  --color-avatar-text: #8a5a00;
+
+  /* App surfaces & states (inner screens) */
+  --color-surface-card: #f6f6f6;
+  --color-border-soft: rgba(0, 0, 0, 0.08);
+  --color-accent-text: #b45309; /* orange for small text (AA on light surfaces) */
+  --color-accent-soft: #fdebd6;
+  --color-accent-soft-text: #8a4300;
+  --color-danger: #b3261e;
+  --color-danger-bg: #fdecea;
+  --color-success-bg: #e7f6ea;
+  --color-overlay: rgba(10, 24, 14, 0.5);
+  --gradient-primary: linear-gradient(180deg, #08a321 0%, #027d18 100%);
+
+  /* Decorative */
+  --color-ring: rgba(255, 255, 255, 0.12);
+  --color-hero-light: rgba(255, 255, 255, 0.14);
+  --color-shine: rgba(255, 255, 255, 0.6);
+  --color-cta-border: rgba(255, 255, 255, 0.9);
+  --color-card-shade-top: rgba(0, 0, 0, 0);
+  --color-card-shade-bottom: rgba(0, 0, 0, 0.72);
+  --color-chip-border: rgba(0, 0, 0, 0.06);
+
+  /* Radii */
+  --radius-sm: 7px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-control: 14px;
+  --radius-card: 22px;
+  --radius-sheet: 24px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-control: 0 2px 8px rgba(0, 0, 0, 0.14);
+  --shadow-chip: 0 0 3px rgba(0, 0, 0, 0.13);
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-nav: 0 -4px 18px rgba(0, 0, 0, 0.08);
+  --shadow-screen: 0 0 40px rgba(0, 0, 0, 0.12);
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-sheet: 0 -10px 30px rgba(0, 0, 0, 0.18);
+  --shadow-button: 0 4px 12px rgba(2, 125, 24, 0.28);
+  --shadow-badge: 2px 2px 0 var(--color-ink-deep);
+  --shadow-cta: 0 4px 10px rgba(0, 0, 0, 0.25);
+  --shadow-cta-hover: 0 7px 16px rgba(0, 0, 0, 0.32);
+  --drop-shadow-dish: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.28));
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  /* Typography */
+  --font-family-base: 'Poppins', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 28px;
+  --font-size-stat: 26px;
+  --font-size-button: 19px; /* bold at this size counts as "large text" for contrast */
+  --font-size-hero-kicker: clamp(15px, 4.9vw, 19px);
+  --font-size-hero-title: clamp(34px, 11vw, 44px);
+
+  /* Sizes */
+  --size-hero-dish: clamp(90px, calc(36vw - 30px), 126px); /* both hero dishes share this width */
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 0.15s;
+  --duration-base: 0.2s;
+  --duration-slow: 0.32s;
+
+  /* Stacking */
+  --z-dock: 20;
+  --z-overlay: 100;
+  --z-toast: 110;
+
+  /* Layout */
+  --app-max-width: 430px;
+}

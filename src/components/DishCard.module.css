@@ -1,0 +1,211 @@
+.card {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 127 / 162;
+  border-radius: var(--radius-card);
+  background: var(--color-card-placeholder);
+  box-shadow: var(--shadow-card);
+}
+
+/* Clips the photo to the rounded corners. Kept off .card so the add button's larger touch area isn't clipped. */
+.media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.35s var(--ease-out);
+}
+
+/* Whole card is one tap target for details; the name and buttons sit above it. */
+.cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+@media (hover: hover) {
+  .card {
+    transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+  }
+
+  .card:hover .image {
+    scale: 1.06;
+  }
+}
+
+.heart {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--duration-fast) var(--ease-out), color var(--duration-base) ease;
+}
+
+.heart::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+}
+
+.heart:active {
+  transform: scale(0.88);
+}
+
+.heartOn {
+  color: #e0245e;
+}
+
+.heartIcon {
+  width: 15px;
+  height: 15px;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--color-card-shade-top) 45%, var(--color-card-shade-bottom) 100%);
+  pointer-events: none;
+}
+
+.name {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  left: 10px;
+  bottom: 10px;
+  right: 34px;
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-white);
+}
+
+.add {
+  position: absolute;
+  z-index: 3;
+  right: 8px;
+  bottom: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+/* invisible 44x44 touch area around the 22px visual button */
+.add::after {
+  content: '';
+  position: absolute;
+  inset: -11px;
+}
+
+.add:active {
+  transform: scale(0.9);
+}
+
+.addActive {
+  background: var(--color-brand);
+  color: var(--color-white);
+}
+
+.addIcon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Names like "Paniyaram" must not run into the add button on mid-width cards. */
+@container (min-width: 105px) and (max-width: 124px) {
+  .name,
+  .labelName {
+    font-size: 11px;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Too narrow for name + button side by side: lift the button to the top-right corner so names never collide with it. */
+@container (max-width: 104px) {
+  .add {
+    top: 8px;
+    bottom: auto;
+  }
+
+  .name {
+    right: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .card,
+  .heart {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover .image {
+    scale: 1;
+  }
+}
+
+/* Two-line label (name + price) used by add-on cards. */
+.label {
+  position: absolute;
+  z-index: 2;
+  left: 10px;
+  right: 34px;
+  bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  pointer-events: none;
+}
+
+.labelName {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-white);
+}
+
+.labelPrice {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-lime);
+}
+
+@container (max-width: 104px) {
+  .label {
+    right: 10px;
+  }
+}

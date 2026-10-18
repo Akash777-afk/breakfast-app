@@ -1,0 +1,80 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #2fbf3f 0%, #073d10 100%);
+  transition: opacity 0.45s ease;
+}
+
+.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  width: 96px;
+  height: 118px;
+  animation: logoIn 0.8s var(--ease-out) backwards;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Zilla Slab', Georgia, 'Times New Roman', serif;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #fbf6e9;
+  animation: textIn 0.7s var(--ease-out) 0.25s backwards;
+}
+
+.tagline {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: #fbf6e9;
+  opacity: 0.9;
+  animation: textIn 0.7s var(--ease-out) 0.4s backwards;
+}
+
+@keyframes logoIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes textIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    transition-duration: 0.01s;
+  }
+
+  .logo,
+  .title,
+  .tagline {
+    animation: none;
+  }
+}

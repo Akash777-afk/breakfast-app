@@ -1,0 +1,156 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--color-overlay);
+  animation: fadeIn var(--duration-base) ease;
+}
+
+.centered {
+  align-items: center;
+  padding: var(--space-4);
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--app-max-width);
+  max-height: 90vh;
+  max-height: 90dvh;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: var(--shadow-sheet);
+  outline: none;
+  animation: sheetUp var(--duration-slow) var(--ease-out);
+}
+
+.grab {
+  flex: none;
+  align-self: center;
+  width: 44px;
+  height: 5px;
+  margin-top: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-border-soft);
+}
+
+.sheetHeader {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4) var(--space-2) var(--space-5);
+}
+
+.sheetTitle {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.close {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  transition: background-color var(--duration-base) ease, color var(--duration-base) ease;
+}
+
+.close:active {
+  background: var(--color-surface-card);
+}
+
+@media (hover: hover) {
+  .close:hover {
+    background: var(--color-surface-card);
+    color: var(--color-text-primary);
+  }
+}
+
+.closeIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.sheetBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-2) var(--space-5) var(--space-5);
+  overscroll-behavior: contain;
+}
+
+.sheetFooter {
+  flex: none;
+  padding: var(--space-3) var(--space-5) calc(var(--space-4) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.dialog {
+  width: 100%;
+  max-width: 360px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sheet);
+  outline: none;
+  animation: popIn var(--duration-slow) var(--ease-out);
+}
+
+.dialogSuccess {
+  border-radius: var(--radius-xl);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheetUp {
+  from {
+    transform: translateY(32px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .sheet,
+  .dialog {
+    animation: none;
+  }
+
+  .close {
+    transition: none;
+  }
+}

@@ -1,0 +1,69 @@
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  border: 1.5px solid var(--color-brand-text);
+  border-radius: var(--radius-control);
+  background: var(--color-white);
+  color: var(--color-brand-text);
+  overflow: hidden;
+}
+
+.sm {
+  height: 36px;
+  border-radius: var(--radius-md);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 100%;
+  color: inherit;
+  transition: background-color var(--duration-base) ease, transform var(--duration-fast) var(--ease-out);
+}
+
+.sm .btn {
+  width: 34px;
+}
+
+.btn:active:not(:disabled) {
+  background: var(--color-success-bg);
+  transform: scale(0.92);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .btn:hover:not(:disabled) {
+    background: var(--color-success-bg);
+  }
+}
+
+.btn:focus-visible {
+  outline-offset: -3px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.value {
+  min-width: 26px;
+  text-align: center;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}

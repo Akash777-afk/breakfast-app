@@ -1,0 +1,225 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.bill {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-card);
+  font-size: var(--font-size-md);
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.free {
+  color: var(--color-brand-text);
+  font-weight: 500;
+}
+
+.total {
+  margin-top: var(--space-1);
+  padding-top: var(--space-2);
+  border-top: 1px dashed rgba(0, 0, 0, 0.18);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.coupons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.couponRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.couponRow > :first-child {
+  flex: 1 1 auto;
+}
+
+.apply {
+  margin-top: 26px;
+  height: 48px;
+}
+
+.applied {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-success-bg);
+  color: var(--color-brand-text);
+  font-size: var(--font-size-md);
+}
+
+.appliedText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tag {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 1.5px dashed var(--color-brand-text);
+  border-radius: var(--radius-md);
+  text-align: left;
+  transition: background-color var(--duration-base) ease;
+}
+
+@media (hover: hover) {
+  .suggestion:hover:not(:disabled) {
+    background: var(--color-success-bg);
+  }
+}
+
+.suggestionCode {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-brand-text);
+}
+
+.suggestionText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.methods {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.methodList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 56px;
+  padding: var(--space-2) var(--space-4);
+  border: 1.5px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  text-align: left;
+  transition: border-color var(--duration-base) ease, background-color var(--duration-base) ease;
+}
+
+@media (hover: hover) {
+  .method:hover:not(:disabled) {
+    border-color: var(--color-brand-text);
+  }
+}
+
+.methodOn,
+.methodOn:hover {
+  border-color: var(--color-brand-text);
+  background: var(--color-success-bg);
+}
+
+.methodIcon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  color: var(--color-brand-text);
+}
+
+.methodText {
+  display: flex;
+  flex-direction: column;
+}
+
+.methodLabel {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.methodHint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cardRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.codNote {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
+  font-size: var(--font-size-md);
+  line-height: 1.45;
+}
+
+.failure {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.demo {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+  text-align: center;
+}

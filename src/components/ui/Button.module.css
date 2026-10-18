@@ -1,0 +1,153 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-base) ease,
+    background-color var(--duration-base) ease,
+    border-color var(--duration-base) ease,
+    filter var(--duration-base) ease;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.block {
+  width: 100%;
+}
+
+/* Primary — gradient call to action */
+.primary {
+  height: 56px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-control);
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  font-size: var(--font-size-button);
+  font-weight: 700;
+  box-shadow: var(--shadow-button);
+}
+
+.primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Outline — secondary action */
+.outline {
+  height: 56px;
+  padding: 0 var(--space-5);
+  border: 1.5px solid var(--color-brand-text);
+  border-radius: var(--radius-control);
+  background: var(--color-white);
+  color: var(--color-brand-text);
+  font-size: var(--font-size-button);
+  font-weight: 600;
+}
+
+.outline:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Link — inline text action */
+.link {
+  padding: var(--space-2) 2px;
+  background: none;
+  color: var(--color-brand-text);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+
+.link:active:not(:disabled) {
+  opacity: 0.7;
+}
+
+/* Pill — compact filled action */
+.pill {
+  height: 36px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-text);
+  color: var(--color-white);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+}
+
+.pill:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* Light — white button on a green surface */
+.light {
+  height: 48px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.light:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) {
+  .primary:hover:not(:disabled) {
+    filter: brightness(1.07);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(2, 125, 24, 0.32);
+  }
+
+  .outline:hover:not(:disabled) {
+    background: var(--color-success-bg);
+  }
+
+  .link:hover:not(:disabled) {
+    text-decoration-color: currentColor;
+  }
+
+  .pill:hover:not(:disabled) {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+  }
+
+  .light:hover:not(:disabled) {
+    background: var(--color-success-bg);
+  }
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .spinner {
+    animation-duration: 1.6s;
+  }
+}

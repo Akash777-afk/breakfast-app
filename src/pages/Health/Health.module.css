@@ -1,0 +1,173 @@
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-2) var(--space-4) var(--space-6);
+}
+
+.card {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-card);
+  box-shadow: inset 0 0 0 1px var(--color-border-soft);
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.group {
+  margin-top: var(--space-3);
+}
+
+.groupTitle {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-success-bg);
+  color: var(--color-brand-text);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-3) var(--space-1);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-card);
+  text-align: center;
+}
+
+.statValue {
+  margin: 0;
+  font-size: var(--font-size-stat);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-brand-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.reportSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--color-green-700) 0%, var(--color-green-900) 100%);
+  color: var(--color-white);
+  --color-focus: var(--color-lime);
+}
+
+.bannerText {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.charges {
+  color: var(--color-lime);
+  font-weight: 600;
+}
+
+.bannerActions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
+}
+
+.ghost,
+.solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--duration-base) ease, color var(--duration-base) ease, transform var(--duration-fast) var(--ease-out);
+}
+
+.ghost {
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  color: var(--color-white);
+}
+
+.solid {
+  background: var(--color-white);
+  color: var(--color-ink);
+}
+
+.ghost:active,
+.solid:active {
+  transform: scale(0.96);
+}
+
+@media (hover: hover) {
+  .ghost:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .solid:hover {
+    background: var(--color-lime);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ghost,
+  .solid {
+    transition: none;
+  }
+}

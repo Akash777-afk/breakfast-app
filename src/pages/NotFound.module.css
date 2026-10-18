@@ -1,0 +1,24 @@
+.home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-text);
+  color: var(--color-white);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  text-decoration: none;
+  transition: filter var(--duration-base) ease, transform var(--duration-fast) var(--ease-out);
+}
+
+.home:active {
+  transform: scale(0.96);
+}
+
+@media (hover: hover) {
+  .home:hover {
+    filter: brightness(1.12);
+  }
+}

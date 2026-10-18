@@ -1,0 +1,352 @@
+.screen {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #e8eee4;
+}
+
+.topRow {
+  position: absolute;
+  top: max(env(safe-area-inset-top), var(--space-4));
+  left: var(--space-4);
+  right: var(--space-4);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 44px;
+  padding: 0 var(--space-4) 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-white);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  box-shadow: var(--shadow-control);
+  transition: transform var(--duration-fast) var(--ease-out), background-color var(--duration-base) ease;
+}
+
+.back:active {
+  transform: scale(0.95);
+}
+
+@media (hover: hover) {
+  .back:hover {
+    background: #2a2a2a;
+  }
+}
+
+.backIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.locate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-control);
+  transition: transform var(--duration-fast) var(--ease-out), background-color var(--duration-base) ease, color var(--duration-base) ease;
+}
+
+.locate[aria-pressed='true'] {
+  background: var(--color-brand);
+  color: var(--color-white);
+}
+
+.locate:active {
+  transform: scale(0.92);
+}
+
+@media (hover: hover) {
+  .locate:hover:not([aria-pressed='true']) {
+    background: var(--color-success-bg);
+  }
+}
+
+.locateIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  max-height: 78%;
+  overflow-y: auto;
+  padding: 0 var(--space-5) calc(var(--space-5) + env(safe-area-inset-bottom));
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sheet);
+}
+
+.handle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-3) 0 var(--space-3);
+}
+
+.grab {
+  width: 44px;
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.18);
+  transition: background-color var(--duration-base) ease;
+}
+
+@media (hover: hover) {
+  .handle:hover .grab {
+    background: rgba(0, 0, 0, 0.35);
+  }
+}
+
+.summaryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.status {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.orderId {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-brand-text);
+  white-space: nowrap;
+}
+
+.day {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  animation: fadeIn var(--duration-slow) var(--ease-out);
+}
+
+.coupon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-primary);
+  color: var(--color-white);
+}
+
+.couponIcon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.couponLabel {
+  flex: 1 1 auto;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+}
+
+.couponCode {
+  padding: 4px 10px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--font-size-md);
+}
+
+.rowLabel {
+  flex: none;
+  color: var(--color-text-secondary);
+}
+
+.rowValue {
+  text-align: right;
+  font-weight: 500;
+}
+
+.items {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-md);
+}
+
+.items th {
+  padding: var(--space-2) 0;
+  text-align: left;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.items th.qtyHead,
+.qtyHead,
+.qty {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.items td {
+  padding: var(--space-2) 0;
+  vertical-align: top;
+}
+
+.qty {
+  padding-left: var(--space-3);
+  font-weight: 600;
+}
+
+.extras {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.paid {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed rgba(0, 0, 0, 0.18);
+  font-size: var(--font-size-md);
+}
+
+.footer {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.footerBtn {
+  flex: 1 1 0;
+  height: 48px;
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-lg);
+}
+
+.emptyLink {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-text);
+  color: var(--color-white);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  text-align: center;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  animation: badgePop 0.5s var(--ease-out) 0.1s backwards;
+}
+
+.badgeIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.dialogTitle {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.dialogText {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-lg);
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes badgePop {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .details,
+  .badge {
+    animation: none;
+  }
+
+  .back,
+  .locate,
+  .grab {
+    transition: none;
+  }
+}

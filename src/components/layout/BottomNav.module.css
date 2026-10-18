@@ -1,0 +1,74 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) calc(var(--space-3) + env(safe-area-inset-bottom));
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-nav);
+}
+
+.item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-nav-inactive);
+  text-decoration: none;
+}
+
+.iconWrap {
+  width: 64px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--duration-base) ease, transform var(--duration-fast) var(--ease-out);
+}
+
+.item:active .iconWrap {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) {
+  .item:not(.itemActive):hover .iconWrap {
+    background: var(--color-success-bg);
+  }
+
+  .item:not(.itemActive):hover {
+    color: var(--color-brand-text);
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.itemActive {
+  color: var(--color-brand-text);
+}
+
+.itemActive .iconWrap {
+  background: var(--color-brand);
+  color: var(--color-white);
+}
+
+.itemActive .label {
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconWrap {
+    transition: none;
+  }
+}

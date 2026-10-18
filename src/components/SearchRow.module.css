@@ -1,0 +1,144 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.search {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 44px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--color-white);
+  box-shadow: var(--shadow-control);
+  cursor: text;
+}
+
+.search:focus-within {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  color: var(--color-brand);
+}
+
+.input {
+  align-self: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 1;
+}
+
+.input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.mic {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: var(--shadow-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand);
+  position: relative;
+  transition: transform var(--duration-fast) var(--ease-out), background-color var(--duration-base) ease;
+}
+
+.micIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.clear {
+  position: relative;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin-right: -4px;
+  border-radius: 50%;
+  background: var(--color-surface-card);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* invisible 44x44 touch area */
+.clear::after {
+  content: '';
+  position: absolute;
+  inset: -11px;
+}
+
+.clearIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.mic:active {
+  transform: scale(0.92);
+}
+
+@media (hover: hover) {
+  .mic:hover {
+    background: var(--color-success-bg);
+  }
+}
+
+.micListening {
+  background: var(--color-brand);
+  color: var(--color-white);
+  animation: micPulse 1.3s ease-out infinite;
+}
+
+@keyframes micPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(198, 232, 77, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(198, 232, 77, 0);
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .micListening {
+    animation: none;
+  }
+
+  .mic {
+    transition: none;
+  }
+}

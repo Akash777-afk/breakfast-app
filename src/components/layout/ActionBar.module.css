@@ -1,0 +1,40 @@
+.bar {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--z-dock);
+  padding: var(--space-3) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom));
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-nav);
+}
+
+.note {
+  margin: 0 0 var(--space-2);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.actions > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Element selector outranks the Button variants so labels scale down on narrow phones instead of clipping. */
+.actions > button {
+  height: auto;
+  min-height: 56px;
+  padding: var(--space-2) var(--space-3);
+  white-space: normal;
+  line-height: 1.15;
+  font-size: clamp(15px, 4.4vw, 17.5px);
+}
+
+.actions > :last-child:not(:first-child) {
+  flex: 1.25 1 0;
+}

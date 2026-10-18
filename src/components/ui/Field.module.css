@@ -1,0 +1,66 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  border: 1.5px solid var(--color-border-soft);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-card);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  transition: border-color var(--duration-base) ease, background-color var(--duration-base) ease, box-shadow var(--duration-base) ease;
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.textarea {
+  min-height: 84px;
+  padding: var(--space-3) var(--space-4);
+  resize: vertical;
+  line-height: 1.4;
+}
+
+@media (hover: hover) {
+  .input:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-brand-text);
+  background: var(--color-white);
+  box-shadow: 0 0 0 3px rgba(3, 151, 25, 0.18);
+}
+
+.invalid,
+.invalid:focus {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.12);
+}
+
+.error {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-danger);
+}
+
+.hint {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}

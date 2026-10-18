@@ -1,0 +1,51 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--font-size-md);
+}
+
+.label {
+  font-weight: 600;
+}
+
+.value {
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: #fdf0c4;
+}
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #f5c518;
+  transform-origin: left;
+  animation: grow 0.9s var(--ease-out) backwards;
+}
+
+@keyframes grow {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    animation: none;
+  }
+}
