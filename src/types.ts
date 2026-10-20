@@ -14,12 +14,29 @@ export interface Dish {
   categories: DishCategory[]
 }
 
+/** What a dish is, as far as add-ons go. Sambar belongs on a dosa, chia seeds on a sharbat, paneer on a salad. */
+export type AddOnGroup = 'tiffin' | 'light-meal' | 'snack' | 'hot-drink' | 'cold-drink' | 'salad' | 'sweet-bowl'
+
+/** Illustrated tile shown when an add-on has no photo yet. */
+export type AddOnArt = 'cup' | 'sugar' | 'cookie' | 'leaf' | 'seeds' | 'ice' | 'nuts' | 'onion' | 'cubes' | 'egg' | 'beans' | 'avocado' | 'drop' | 'scoop' | 'jar'
+
 export interface AddOn {
   id: string
   name: string
-  image: string
+  /** Photo. Add-ons without one use `art`. */
+  image?: string
+  art?: AddOnArt
+  /** Rupees; 0 shows as "Free". */
   price: number
   diet: Diet
+  /** The kinds of dish it can go with. */
+  groups: AddOnGroup[]
+  /** Narrows it to these dishes within `groups`. */
+  only?: string[]
+  /** Dishes within `groups` that should not get it. */
+  except?: string[]
+  /** Add-ons sharing an exclusive key can't be picked together (Less sugar / No sugar). */
+  exclusive?: string
 }
 
 export type Portion = 'regular' | 'large'

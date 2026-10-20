@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useReducer, type ReactNode } from 'react'
 import { DEFAULT_ADDRESS } from '../data/checkout'
 import { DEFAULT_SLEEP_HOURS } from '../data/health'
+import { sanitizeAddOnIds } from '../lib/addons'
 import { clearPersisted, readPersisted, writePersisted } from '../lib/storage'
 import type {
   Address,
@@ -85,7 +86,7 @@ function reducer(state: AppState, action: Action): AppState {
           ...state,
           cart: state.cart.map((l) =>
             l.dishId === action.dishId
-              ? { ...l, qty: l.qty + qty, addOnIds: action.addOnIds ?? l.addOnIds, options: action.options ?? l.options }
+              ? { ...l, qty: l.qty + qty, addOnIds: action.addOnIds ? sanitizeAddOnIds(l.dishId, action.addOnIds) : l.addOnIds, options: action.options ?? l.options }
               : l,
           ),
         }
@@ -94,7 +95,7 @@ function reducer(state: AppState, action: Action): AppState {
         ...state,
         cart: [
           ...state.cart,
-          { dishId: action.dishId, qty, addOnIds: action.addOnIds ?? [], options: action.options ?? DEFAULT_OPTIONS },
+          { dishId: action.dishId, qty, addOnIds: sanitizeAddOnIds(action.dishId, action.addOnIds ?? []), options: action.options ?? DEFAULT_OPTIONS },
         ],
       }
     }
@@ -107,7 +108,7 @@ function reducer(state: AppState, action: Action): AppState {
             : state.cart.map((l) => (l.dishId === action.dishId ? { ...l, qty: Math.min(action.qty, 20) } : l)),
       }
     case 'cart/setAddOns':
-      return { ...state, cart: state.cart.map((l) => (l.dishId === action.dishId ? { ...l, addOnIds: action.addOnIds } : l)) }
+      return { ...state, cart: state.cart.map((l) => (l.dishId === action.dishId ? { ...l, addOnIds: sanitizeAddOnIds(l.dishId, action.addOnIds) } : l)) }
     case 'cart/setOptions':
       return { ...state, cart: state.cart.map((l) => (l.dishId === action.dishId ? { ...l, options: action.options } : l)) }
     case 'cart/clear':
@@ -169,7 +170,10 @@ function hydrate(): AppState {
   const sleep = s.health?.sleepHours
   return {
     profile: typeof s.profile?.name === 'string' && s.profile.name.trim() ? { name: s.profile.name } : base.profile,
-    cart: isArray(s.cart) ? s.cart.filter((l) => l && typeof l.dishId === 'string' && l.qty > 0) : base.cart,
+    // add-ons are per dish now: anything saved from before (a Sambar on a chai) is dropped
+    cart: isArray(s.cart)
+      ? s.cart.filter((l) => l && typeof l.dishId === 'string' && l.qty > 0).map((l) => ({ ...l, addOnIds: isArray(l.addOnIds) ? sanitizeAddOnIds(l.dishId, l.addOnIds) : [] }))
+      : base.cart,
     favorites: isArray(s.favorites) ? s.favorites : base.favorites,
     addresses: isArray(s.addresses) && s.addresses.length > 0 ? s.addresses : base.addresses,
     selectedAddressId: typeof s.selectedAddressId === 'string' || s.selectedAddressId === null ? s.selectedAddressId : base.selectedAddressId,

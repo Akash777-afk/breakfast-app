@@ -187,6 +187,7 @@ Alt text: dish photos use the dish name; decorative images use `alt=""`.
 | **DishGrid** | `components/DishGrid.tsx` | Heading + FilterButton above a 3-column grid; a horizontally scrolling `row` variant (116px cards, scroll-snap with `scroll-padding`); a skeleton while loading and an `empty` slot. |
 | **DishCard** | `components/DishCard.tsx` | `127/162` card. The whole card is a link to `/dish/:id` (cover `<a>`, z-index 1); the name sits above it with `pointer-events: none`; the 22px "+" toggles the cart (toast with Undo, 44px hit area); optional favourite heart (top-left). Hover on pointer devices: lifts 2px, photo zooms 1.06. Names drop to 11px on 105–124px cards so words like "Paniyaram" never touch the button. |
 | **AddOnCard** | `components/AddOnCard.tsx` | Same card/CSS as DishCard with a two-line label (name + lime price); tap anywhere or the "+" to select. |
+| **AddOnArt** | `components/AddOnArt.tsx` | Illustrated tile (deep-green card + a flat drawing) shown by AddOnCard for add-ons that have no photo yet. To use a photo instead: drop a file in `src/assets/addons`, import it in `data/addons.ts` and set `image` — the tile disappears for that add-on. |
 
 ### 3.2 UI kit (`components/ui`)
 
@@ -225,7 +226,7 @@ Charts are plain SVG with no dependency: `LineChart` (smooth line, keyboard / ta
 | Route | Screen |
 |---|---|
 | `/` | Home — search, category + filter, grid, hero, dock |
-| `/dish/:id` | Customize your order — dish card, Customize, Add + / stepper, add-ons, Back to home / Proceed checkout |
+| `/dish/:id` | Customize your order — dish card, Customize, Add + / stepper, add-ons **for that dish** (none for a boiled egg or a bowl of sambar), Back to home / Proceed checkout |
 | `/checkout` | Order, address radios, slot grid + Other Timings, "Cut your cost, choose smart", bill, Proceed to payment |
 | `/order/:id` | Order status — map, success dialog (first view only), collapsible details sheet |
 | `/plans` | Subscription plans — radios, Edit combo, Free Trial, Subscribe / Upgrade, Cancel plan |
@@ -314,3 +315,13 @@ Audit after the fixes: no colour, shadow, radius or font-size literals remain in
 | 3 | **Map is illustrative** | The order-status map is an SVG, not live tracking; the courier animation is decorative. |
 | 4 | **Scope limits** | No dark mode; fonts come from the Google Fonts CDN; wide screens show the phone column; order status never advances by itself ("Delivered" is inferred from the delivery date). |
 | 5 | **Layout geometry stays literal (by design)** | Component pixel sizes (44, 22, 72×54, 64×40…), the 560px ring, dish offsets/rotations, gradient stops, chart geometry and keyframe values are one-off geometry, not shared tokens. |
+
+## Add-ons are per dish
+
+Sambar belongs on a dosa, chia seeds on a sharbat, paneer on a salad — so every add-on in `data/addons.ts` says where it goes, and `lib/addons.ts` decides what each dish is offered.
+
+- **Groups:** a dish is one of `tiffin`, `light-meal`, `snack`, `hot-drink`, `cold-drink`, `salad`, `sweet-bowl`, or nothing (a boiled egg and the sambar dish have no add-ons). An add-on lists the groups it suits, and may narrow itself with `only` / `except` (Coconut milk: idiyappam, puttu, paniyaram; Hummus: Greek salad; Pistachio & almonds: Mango lassi).
+- **Exclusive choices:** add-ons sharing an `exclusive` key can't be picked together — Less sugar / No sugar.
+- **Free options** (price 0) show "Free" and cost nothing.
+- **Old carts:** add-on ids that don't belong on a dish (a Sambar saved on a chai before add-ons were per dish) are dropped when a saved cart loads and whenever add-ons are set.
+- **Photos:** the first eight add-ons have photos; the rest use the illustrated tile.

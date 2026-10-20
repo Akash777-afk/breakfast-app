@@ -13,6 +13,7 @@ import { SkeletonGrid } from '../../components/ui/Skeleton'
 import { Stepper } from '../../components/ui/Stepper'
 import { useToast } from '../../components/ui/Toast'
 import { DISH_BY_ID } from '../../data/dishes'
+import { toggleAddOnId } from '../../lib/addons'
 import { applyFilter, DEFAULT_FILTER, isFilterActive } from '../../lib/filters'
 import { rupees } from '../../lib/format'
 import { lineTotal } from '../../lib/pricing'
@@ -27,7 +28,7 @@ export function DishPage() {
   const { id = '' } = useParams()
   const dish = DISH_BY_ID[id]
   if (!dish) return <NotFound title="Dish not found" text="We couldn’t find that dish. It may have been removed from the menu." />
-  return <DishDetail dish={dish} />
+  return <DishDetail key={dish.id} dish={dish} />
 }
 
 const SPICE_LABEL = { mild: 'Mild', medium: 'Medium', spicy: 'Spicy' } as const
@@ -36,7 +37,7 @@ function DishDetail({ dish }: { dish: Dish }) {
   const navigate = useNavigate()
   const toast = useToast()
   const { state, actions } = useApp()
-  const { data: addOns, loading, error, reload } = useAsync(getAddOns)
+  const { data: addOns, loading, error, reload } = useAsync(() => getAddOns(dish.id), [dish.id])
 
   const line = state.cart.find((l) => l.dishId === dish.id)
   const favorite = state.favorites.includes(dish.id)
@@ -55,7 +56,7 @@ function DishDetail({ dish }: { dish: Dish }) {
   const total = lineTotal({ dishId: dish.id, qty: line?.qty ?? 1, addOnIds, options })
 
   const toggleAddOn = (addOnId: string) => {
-    const next = addOnIds.includes(addOnId) ? addOnIds.filter((x) => x !== addOnId) : [...addOnIds, addOnId]
+    const next = toggleAddOnId(addOnIds, addOnId)
     if (line) actions.setAddOns(dish.id, next)
     else setDraftAddOns(next)
   }
@@ -147,6 +148,8 @@ function DishDetail({ dish }: { dish: Dish }) {
           </p>
         )}
 
+        {/* A dish with nothing sensible to add (a boiled egg, a bowl of sambar) simply has no add-on section. */}
+        {(loading || error || (addOns && addOns.length > 0)) && (
         <section className={styles.addOns} aria-labelledby="addons-title">
           <div className={styles.addOnsHeading}>
             <h2 id="addons-title" className={styles.sectionTitle}>
@@ -177,6 +180,7 @@ function DishDetail({ dish }: { dish: Dish }) {
             </div>
           )}
         </section>
+        )}
       </div>
 
       <ActionBar note={`${line ? `${line.qty} × ` : ''}${dish.name}${addOnIds.length ? ` + ${addOnIds.length} add on${addOnIds.length > 1 ? 's' : ''}` : ''} · ${rupees(total)}`}>

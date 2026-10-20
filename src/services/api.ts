@@ -2,7 +2,7 @@
  * Mock backend. Every call is async with simulated latency so screens exercise real loading/error states.
  * To go live, replace the bodies with fetch() calls — the signatures are what the UI depends on.
  */
-import { ADDONS } from '../data/addons'
+import { addOnsForDish } from '../lib/addons'
 import { COUPONS } from '../data/checkout'
 import { DISHES } from '../data/dishes'
 import {
@@ -34,9 +34,10 @@ export async function getDishes(): Promise<Dish[]> {
   return DISHES
 }
 
-export async function getAddOns(): Promise<AddOn[]> {
+/** The add-ons that make sense for one dish (none for a dish that has nothing to add to). */
+export async function getAddOns(dishId: string): Promise<AddOn[]> {
   await latency('addons', 450)
-  return ADDONS
+  return addOnsForDish(dishId)
 }
 
 export async function getPlans(): Promise<Plan[]> {
