@@ -7,7 +7,20 @@
 
 .brand {
   min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   color: var(--color-text-on-green);
+}
+
+.logo {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 45px;
+}
+
+.brandText {
+  min-width: 0;
 }
 
 .title {

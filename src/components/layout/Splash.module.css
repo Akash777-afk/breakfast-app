@@ -22,8 +22,8 @@
 }
 
 .logo {
-  width: 96px;
-  height: 118px;
+  width: 112px;
+  height: 150px;
   animation: logoIn 0.8s var(--ease-out) backwards;
 }
 
